@@ -17,24 +17,38 @@
 			<td bgcolor="#cccccc">예약시간</td>
 			<td bgcolor="#cccccc">사용목적</td>
 			<td bgcolor="#cccccc">사용할시간</td>
-			<td bgcolor="#cccccc">승인여부</td>
-			
+			<td bgcolor="#cccccc">수락여부</td>
+			<td bgcolor="#cccccc">거부</td>
 		</tr>
 		<?php
 			while($row = mysqli_fetch_array($result))
 			{
-				echo ("
-				<form>
-				<tr>
-				<td> $number</td>
-				<td> $row[ID]</td>
-				<td> $row[DateTime]</td>
-				<td> $row[Usage]</td>
-				<td> $row[Room_ID]</td>
-				<td> <input type='checkbox' name='Allowed' value='1'></td>
-				</tr>
-				</form>
-				");
+				if($row[Allowed]==0){
+					echo ("
+					<tr>
+					<td> $number</td>
+					<td> $row[ID]</td>
+					<td> $row[DateTime]</td>
+					<td> $row[Usage]</td>
+					<td> $row[Room_ID]</td>
+					<td><input type='submit' value='수락' onclick='location.href='managerAllowed.php''></td>
+					<td><input type='button' value='거절' onclick='location.href='managerDelete.php''></td>
+					</tr>
+					");
+				}
+				else{
+					echo("
+					<tr>
+					<td> $number</td>
+					<td> $row[ID]</td>
+					<td> $row[DateTime]</td>
+					<td> $row[Usage]</td>
+					<td> $row[Room_ID]</td>
+					<td> 수락됨 </td>
+					<td><input type='button' value='거절' onclick='location.href='managerDelete.php''></td>
+					</tr>
+					");
+				}
 				$number++;
 			}
 		?>
