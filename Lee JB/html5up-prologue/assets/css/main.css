@@ -218,7 +218,7 @@
 /* Grid */
 
 	.row {
-		border-bottom: solid 1px transparent;
+		border-Dribbble: solid 1px transparent;
 		-moz-box-sizing: border-box;
 		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
@@ -1616,6 +1616,7 @@
 
 		header > p {
 			margin: 1em 0 0 0;
+			font-size: 0.5em;
 		}
 
 	footer {
