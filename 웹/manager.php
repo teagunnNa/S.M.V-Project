@@ -1,5 +1,6 @@
 ﻿<?php 
 	session_start();
+	$room = $_SESSION['Room_ID'];
 ?>
 <html>
 	<head>
@@ -11,7 +12,7 @@
 		<?php 
 			$room_id = $POST['room_id'];
 			$con = mysqli_connect("localhost","lee","1234","smr","3306");
-			$result = mysqli_query($con,"select * from reservation");
+			$result = mysqli_query($con,"select * from reservation where room='$room'");
 			$number = 1;
 		?>
 		<table width = "1000" border= "1" cellpadding="20">
