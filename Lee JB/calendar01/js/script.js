@@ -1,6 +1,6 @@
-/* Kurien / Kurien's Blog / http://blog.kurien.co.kr */
-/* 주석만 제거하지 않는다면, 어떤 용도로 사용하셔도 좋습니다. */
-
+function button1_click(d) {
+	alert( d + "버튼을 누르셨습니다.");
+}
 function kCalendar(id, date) {
 	var kCalendar = document.getElementById(id);
 	
@@ -82,7 +82,7 @@ function kCalendar(id, date) {
 				calendar += '				<td class="' + dateString[j] + '"> </td>';
 				continue;
 			}
-			calendar += '				<td class="' + dateString[j] + '">' + dateNum + '</td>';
+			calendar += '				<td class="' + dateString[j] + '">' + '<a href="#" onclick="button1_click(\'' + (currentMonth*100 + dateNum) + '\');">' + dateNum + '</td>';
 		}
 		calendar += '			</tr>';
 	}
