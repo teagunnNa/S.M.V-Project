@@ -1,17 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>자바스크립트 달력</title>
-	<link href="css/style.css" rel="stylesheet">
-	<script src="js/script.js"></script>
-</head>
-<body>
-	<div id="kCalendar"></div>
-	<script>
-		window.onload = function () {
-			kCalendar('kCalendar');
-		};
-	</script>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<title>자바스크립트 달력</title>
+		<link href="css/style.css" rel="stylesheet">
+		<script src="js/script.js"></script>
+	</head>
+	</style>
+	<body>
+		<table id="maintable">
+		<tr id="maintr">
+		<td class="maintd">
+		<div id="kCalendar">
+		
+		<script>
+			window.onload = function () {
+				kCalendar('kCalendar');
+			};
+		</script>
+		</div>
+		</td>
+		<td class="maintd">
+		<?php
+		$db = new mysqli('localhost', 'root', 'apmsetup', 'smr');
+
+		if ($db->connect_error) {
+		die('데이터베이스 연결에 문제가 있습니다.\n관리자에게 문의 바랍니다.');
+		}
+
+		$db->set_charset('utf8');
+		$sql = 'select * from reservation order by DateTime desc';/*테이블 이름,올림차순 키설정*/
+						$result = $db->query($sql);
+						while($row = $result->fetch_assoc())
+						{
+							$datetime = explode(' ', $row['DateTime']);/*db 키수정*/
+							$date = $datetime[0];
+							$time = $datetime[1];
+							if($date == Date('Y-m-d'))
+								$row['DateTime'] = $time;/*db 키수정*/
+							else
+								$row['DateTime'] = $date;/*db 키수정*/
+
+		echo $row['DateTime']
+
+		?>
+		
+		</td>
+		</tr>
+		
+	</body>
 </html>
