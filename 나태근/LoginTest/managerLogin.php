@@ -18,7 +18,7 @@
 
  
 
-    $sql="SELECT id FROM member WHERE ID='$myusername' and PW='$mypassword'";
+    $sql="SELECT id FROM manager WHERE ID='$myusername' and PW='$mypassword'";
 
     $result=mysql_query($sql);
 
@@ -63,6 +63,10 @@
 }
 
 ?>
+
+
+
+
 
 <html>
 
