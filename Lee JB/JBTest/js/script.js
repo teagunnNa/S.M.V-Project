@@ -1,6 +1,12 @@
-function button1_click(d) {
-	alert( d + "버튼을 누르셨습니다.");
+function button1_click(d){
+	location.href="timetable.php?"+d;
 }
+function PopWin1(url, h, w, sb) {
+		var newWin;
+		var setting="width="+h+",height="+w+",top=150,left=400,scrollbars="+sb;
+		newWin= window.open(url,"",setting);
+		newWin.focus();
+	}
 function kCalendar(id, date) {
 	var kCalendar = document.getElementById(id);
 	
@@ -82,7 +88,7 @@ function kCalendar(id, date) {
 				calendar += '				<td class="' + dateString[j] + '"> </td>';
 				continue;
 			}
-			calendar += '				<td class="' + dateString[j] + '">' + '<a href="#" onclick="button1_click(\'' + (currentMonth*100 + dateNum) + '\');">' + dateNum + '</td>';
+			calendar += '				<td class="' + dateString[j] + '">' + '<a href="#" onclick="button1_click(\'' + (currentYear*10000 + currentMonth*100 + dateNum) + '\');">' + dateNum + '</td>';
 		}
 		calendar += '			</tr>';
 	}
