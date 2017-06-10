@@ -1,10 +1,10 @@
-<?php
+ï»¿<?php
 
  
 
-    include("config.php");  //DB¿¬°áÀ» À§ÇÑ config.php¸¦ ·ÎµùÇÕ´Ï´Ù.
+    include("config.php");
 
-    session_start();   //¼¼¼ÇÀÇ ½ÃÀÛ
+    session_start(); 
 
  
 
@@ -14,34 +14,19 @@
 
     $mypassword=addslashes($_POST['password']); 
 
-	echo "<script>alert(\"$myusername $mypassword\");</script>";
- 
-
     $sql="SELECT id FROM member WHERE ID='$myusername' and PW='$mypassword'";
 
     $result=mysql_query($sql);
 
-    //$row=mysql_fetch_array($result);
-
-    //$active=$row['active'];
-
- 
-
     $count=mysql_num_rows($result);
 
- 
-
-    // If result matched $myusername and $mypassword, table row must be 1 row
-
-    if($count==1)  //count°¡ 1ÀÌ¶ó´Â °ÍÀº ¾ÆÀÌµğ¿Í ÆĞ½º¿öµå°¡ ÀÏÄ¡ÇÏ´Â db°¡ ÇÏ³ª ÀÖÀ½À» ÀÇ¹ÌÇÕ´Ï´Ù. 
+    if($count==1)
 
     {
+		echo "<script>alert(\"ì„±ê³µ\");</script>";
 
-        session_register("myusername");
-
-        $_SESSION['login_user']=$myusername;
-
-        header("location: welcome.php");  // welcome.php ÆäÀÌÁö·Î ³Ñ±é´Ï´Ù.
+		$_SESSION['userid']=$myusername;
+		header("Location: ../Main2.php");
 
     }
 
@@ -49,7 +34,7 @@
 
     {
 
-        echo "<script>alert(\"·Î±×ÀÎ¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.\");
+        echo "<script>alert(\"ë¡œê·¸ì¸ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.\");
 
 				history.back(1);
 
@@ -101,7 +86,7 @@
 
 							-->
 							<ul>
-								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">·Î±×ÀÎ</span></a></li>
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-user">ë¡œê·¸ì¸</span></a></li>
 							</ul>
 						</nav>
 
@@ -111,7 +96,7 @@
 
 					<!-- Social Icons -->
 						<ul class="icons">
-							<li><a href="http://211.183.34.26/index.html" class="icon fa-user"><span class="label">UserMain</span></a></li>
+							<li><a href="../Main1.php" class="icon fa-home"><span class="label">UserMain</span></a></li>
 						</ul>
 
 				</div>
@@ -126,17 +111,22 @@
 						<div class="container">
 
 							<header>
-								<h2 class="alt">·Î±×ÀÎ</h2>
-								<CENTER>¾ÆÀÌµğ¿Í ÆĞ½º¿öµå¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä</b></div>
+								<h2 class="alt">ë¡œê·¸ì¸</h2>
+								ì•„ì´ë””ì™€ íŒ¨ìŠ¤ì›Œë“œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”</b></div>
 
 								<form action="" method="post">
-
-								<label>¾Æ ÀÌ µğ   :</label><input type="text" name="username" class="box"/><br>
-
-								<label>ÆĞ½º¿öµå :</label><input type="password" name="password" class="box" />
-
-								<center><input type="submit" value="·Î±×ÀÎ"/><br/>
-								<a href="signup.php"> <input type="button" value="È¸¿ø°¡ÀÔ"></a>
+								<table>
+								<tr>
+								<th>ì•„ ì´ ë”” </th>
+								<th><input type="text" name="username" class="box"/><br></th>
+								</tr>
+								<tr>
+								<th>íŒ¨ìŠ¤ì›Œë“œ </th>
+								<td><input type="password" name="password" class="box" /></td>
+								</tr>
+								<tr><td>&nbsp&nbsp </td><td></td></tr>
+								<tr><th colspan="2"><input type="submit" value="ë¡œê·¸ì¸"/> &nbsp&nbsp&nbsp&nbsp <a href="signup.php"> <input type="button" value="íšŒì›ê°€ì…"></a></th><th></th></tr>
+								</table>
 							</header>
 
 

@@ -1802,9 +1802,9 @@
 		outline: 0;
 		background: #fff;
 		background: rgba(255, 255, 255, 0.75);
-		width: 100%;
+		width : 70%;
 		border-radius: 0.35em;
-		padding: 0.75em 1em 0.75em 1em;
+		padding: 0.2em 1em 0.2em 1em;
 		box-shadow: inset 0 0.1em 0.1em 0 rgba(0, 0, 0, 0.05);
 		border: solid 1px rgba(0, 0, 0, 0.15);
 		-moz-transition: all 0.35s ease-in-out;
@@ -1904,7 +1904,7 @@
 		border-radius: 0.35em;
 		color: #fff !important;
 		text-decoration: none;
-		padding: 0.75em 2.5em 0.75em 2.5em;
+		padding: 0.2em 0.2em 0.2em 0.2em;
 		background-color: #8ebebc;
 		border: 0;
 		cursor: pointer;
@@ -2048,7 +2048,7 @@
 			position: relative;
 			color: #fff;
 			font-weight: 600;
-			font-size: 1em;
+			font-size: 0.9em;
 			line-height: 1em;
 		}
 
@@ -2127,10 +2127,10 @@
 
 			#footer .copyright li {
 				display: inline-block;
-				line-height: 1em;
-				border-left: solid 1px rgba(128, 128, 128, 0.35);
-				padding: 0 0 0 0.5em;
-				margin: 0 0 0 0.5em;
+				line-height: 0.2em;
+				border-left: solid 0.2px rgba(128, 128, 128, 0.35);
+				padding: 0 0 0 0.2em;
+				margin: 0 0 0 0.2em;
 			}
 
 				#footer .copyright li:first-child {
@@ -2552,10 +2552,10 @@
 
 			#footer .copyright li {
 				display: block;
-				line-height: 1.25em;
+				line-height: 0.2em;
 				border: 0;
 				padding: 0;
-				margin: 1em 0 0 0;
+				margin: 0.2em 0 0 0;
 			}
 
 				#footer .copyright li:first-child {

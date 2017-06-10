@@ -1,10 +1,10 @@
-<?php
+ï»¿<?php
 
  
 
-    include("config.php");  //DB¿¬°áÀ» À§ÇÑ config.php¸¦ ·ÎµùÇÕ´Ï´Ù.
+    include("config.php");  //DBì—°ê²°ì„ ìœ„í•œ config.phpë¥¼ ë¡œë”©í•©ë‹ˆë‹¤.
 
-    session_start();   //¼¼¼ÇÀÇ ½ÃÀÛ
+    session_start();   //ì„¸ì…˜ì˜ ì‹œìž‘
 
  
 
@@ -34,7 +34,7 @@
 
 		// If result matched $myusername and $mypassword, table row must be 1 row
 
-		if($count==1)  //count°¡ 1ÀÌ¶ó´Â °ÍÀº ¾ÆÀÌµð¿Í ÆÐ½º¿öµå°¡ ÀÏÄ¡ÇÏ´Â db°¡ ÇÏ³ª ÀÖÀ½À» ÀÇ¹ÌÇÕ´Ï´Ù. 
+		if($count==1)  //countê°€ 1ì´ë¼ëŠ” ê²ƒì€ ì•„ì´ë””ì™€ íŒ¨ìŠ¤ì›Œë“œê°€ ì¼ì¹˜í•˜ëŠ” dbê°€ í•˜ë‚˜ ìžˆìŒì„ ì˜ë¯¸í•©ë‹ˆë‹¤. 
 
 		{
 
@@ -42,7 +42,7 @@
 
 			$_SESSION['login_user']=$myusername;
 
-			header("location: mIndex.php");  // welcome.php ÆäÀÌÁö·Î ³Ñ±é´Ï´Ù.
+			header("location: mIndex.php");  // welcome.php íŽ˜ì´ì§€ë¡œ ë„˜ê¹ë‹ˆë‹¤.
 
 		}
 
@@ -50,7 +50,7 @@
 
 		{
 
-			echo "<script>alert(\"°ü¸®ÀÚ ·Î±×ÀÎ¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.\");
+			echo "<script>alert(\"ê´€ë¦¬ìž ë¡œê·¸ì¸ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.\");
 
 					history.back(1);
 
@@ -102,7 +102,7 @@
 
 							-->
 							<ul>
-								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">°ü¸®ÀÚ ·Î±×ÀÎ</span></a></li>
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-wrench">ê´€ë¦¬ìž ë¡œê·¸ì¸</span></a></li>
 							</ul>
 						</nav>
 
@@ -112,7 +112,7 @@
 
 					<!-- Social Icons -->
 						<ul class="icons">
-							<li><a href="http://211.183.34.26/index.html" class="icon fa-user"><span class="label">UserMain</span></a></li>
+							<li><a href="../Main1.php" class="icon fa-home"><span class="label">UserMain</span></a></li>
 						</ul>
 
 				</div>
@@ -127,17 +127,22 @@
 						<div class="container">
 
 							<header>
-								<h2 class="alt">°ü¸®ÀÚ ·Î±×ÀÎ</h2>
-								<CENTER>¾ÆÀÌµð¿Í ÆÐ½º¿öµå¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä</b></div>
+								<h2 class="alt">ë¡œê·¸ì¸</h2>
+								ì•„ì´ë””ì™€ íŒ¨ìŠ¤ì›Œë“œë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”</b></div>
 
 								<form action="" method="post">
-
-								<label>¾Æ ÀÌ µð   :</label><input type="text" name="username" class="box"/><br>
-
-								<label>ÆÐ½º¿öµå :</label><input type="password" name="password" class="box" />
-
-								<center><input type="submit" value="°ü¸®ÀÚ ·Î±×ÀÎ"/><br/>
-								
+								<table>
+								<tr>
+								<th>ì•„ ì´ ë”” </th>
+								<th><input type="text" name="username" class="box"/><br></th>
+								</tr>
+								<tr>
+								<th>íŒ¨ìŠ¤ì›Œë“œ </th>
+								<td><input type="password" name="password" class="box" /></td>
+								</tr>
+								<tr><td>&nbsp&nbsp </td><td></td></tr>
+								<tr><th colspan="2"><input type="submit" value="ë¡œê·¸ì¸"/></a></th><th></th></tr>
+								</table>
 							</header>
 
 

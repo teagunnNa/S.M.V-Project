@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 include("config.php");  //DB연결을 위한 config.php를 로딩합니다.
 
@@ -7,54 +7,22 @@ session_start();   //세션의 시작
 $bil = $_SESSION['nnn'];
 
 $sql="select Building from place where place_ID='$bil'";
+$bilret=mysql_query($sql);
+for($i=0;$row=mysql_fetch_array($bilret);$i++){$Building[]=$row[$i];}
+
+$rooms=array();
+$sum=0;
+
+$sql="select RoomNum from room where place_ID=".$bil;
 $ret=mysql_query($sql);
-for($i=0;$row=mysql_fetch_array($ret);$i++){$Building[]=$row[$i];}
+while($row=mysql_fetch_array($ret)){$rooms[]=$row[0];}
+$rm_count=count($rooms);
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-	
-	$roomNum=addslashes($_POST['roomNum']);
-	
-	$testResult = mysql_query("SELECT * FROM room WHERE RoomNum='$roomNum' and place_ID='$bil'");
-	$count=mysql_num_rows($testResult);
-	
-	if($count<1){
-	
-		$result = mysql_query("SELECT MAX(Room_ID) FROM room");
-		$idx = mysql_fetch_array($result);
-		$Room_ID = $idx[0]+1;
-		
-		$insert = mysql_query("INSERT INTO room(Room_ID, Place_ID, roomNum) values('$Room_ID', '$bil', '$roomNum')");
-		
-		$uploaddir = '\\\\211.183.34.26/htdocs/image/';  //파일이 저장될 실제 폴더 
-
-		$uploadfile = $uploaddir . basename($_FILES['userfile']['name']); //파일의 이름정의 
-		
-		$fn=$bil."-".$roomNum.".jpg";
-		
-		$fn = iconv("UTF-8","cp949//IGNORE", $fn); 
-		
-		if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploaddir.$fn)) { 
-			
-			
-			
-		} else { 
-
-			echo "<script> alert(\"해당 파일이 없습니다.\") </script>";
-
-		}
-		
-		echo "<script> alert(\"시설이 추가되었습니다.\") </script>";
-	
-	}else{
-		
-		echo "<script> alert(\"이미 추가되있는 시설입니다.\") </script>";
-		
-	}
-	
-}
+$sql11="select Room_ID from room where place_ID=".$bil;
+$ret11=mysql_query($sql11);
+while($row11=mysql_fetch_array($ret11)){$rooms11[]=$row11[0];}
 
 ?>
-
 <!DOCTYPE HTML>
 <!--
 	Prologue by HTML5 UP
@@ -69,10 +37,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]--><meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	</head>
 	<body>
-		
+
 		<!-- Header -->
 			<div id="header">
 
@@ -101,11 +69,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 							-->
 							<ul>
-								<?php
-									echo("
-										<li><a href=\"#top\" id=\"top-link\" class=\"skel-layers-ignoreHref\"><span class=\"icon fa-plus-square-o\">$Building[0] 호실 추가</span></a></li>
-									")
-								?>
+								<li><a href="#bon" id="bon-link" class="skel-layers-ignoreHref"><span class="icon fa-minus-square-o"><?php echo "$Building[0]"?></span></a></li>
 							</ul>
 						</nav>
 
@@ -115,7 +79,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 					<!-- Social Icons -->
 						<ul class="icons">
-							<li><a href="mIndex.php" class="icon fa-home"><span class="label">ManagerMain</span></a></li>
+							<li><a href="mIndex.php" class="icon fa-home"><span class="label">main</span></a></li>
 						</ul>
 
 				</div>
@@ -125,32 +89,32 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		<!-- Main -->
 			<div id="main">
 
-				<!-- Intro -->
-					<section id="top" class="one dark cover">
+				<!-- bon -->
+					<section id="bon" class="two">
 						<div class="container">
 
 							<header>
-								<h2 class="alt">시설추가</h2>
-								<form enctype="multipart/form-data" action="" method="post">
-									<?php
-									echo("
-										$Building[0] 시설을 추가합니다.<br><br>
-									")
-									?>
-									<table><tr>
-									<th>호실</th>
-									<th><input  type="text" name="roomNum" size="1%" class="box"/></th>
-									</tr></table>
-									<input name="userfile" type="file" /> 
-									<input type="submit" value="시설 추가"/><br/>
-								
-								</form>
+								<h2><?php echo "$Building[0] 시설 삭제"?></h2>
 							</header>
-
-
+							<div class="row">
+								<?php
+									for($i=0;$i<$rm_count;$i++)
+									{
+											echo"<div class=\"4u 12u$(mobile)\">";
+											echo"<article class=\"item\">
+												<a href=\"#\" class=\"image fit\" onclick=\"delete_room_id($rooms11[$i])\"><img src=\"../image/$bil-$rooms[$i].jpg\" alt=\"\" /></a>
+												<header>
+												<h3>$rooms[$i]</h3>
+												</header>
+												</article>";
+											echo"</div>";
+									}
+								?>
+							</div>	
 						</div>
 					</section>
-             </div>   
+			
+				</div>
 		<!-- Footer -->
 			<div id="footer">
 
@@ -160,7 +124,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					</ul>
 
 			</div>
-
+		
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
@@ -169,6 +133,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
+  			<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.js"></script>
+			<script>
+				function delete_room_id(roomid) {
+					$.ajax({
+						url: "./mDeleteExecution.php",
+						type: "GET",
+						data: {"roomid": roomid},
+						success: function (result) {
+							alert(result);
+						},
+						error: function (jqXHR, textStatus, errorThrown) {
+							alert("ERROR" + textStatus + " : " + errorThrown);
+							self.close();
+						}
+					});
+				location.reload();
+				}
+			</script>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  			<script src="su/jquery.rwdImageMaps.min.js"></script>
+  			<script>
+    			$(document).ready(function(e){
+      				$('img[usemap]').rwdImageMaps();
+   				});
+  			</script>
 
 	</body>
 </html>

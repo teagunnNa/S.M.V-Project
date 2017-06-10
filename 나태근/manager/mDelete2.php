@@ -7,7 +7,7 @@
 	<body>
 		<?php 
 			$_SESSION['nnn']=8;
-			header("Location: mAdd.php");
+			header("Location: mDelete.php");
 		?>
 	</body>
 </html>
