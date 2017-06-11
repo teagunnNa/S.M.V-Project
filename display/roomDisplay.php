@@ -5,13 +5,20 @@
 	</head>
 	<body>
 		<?php 
+			$room = $_SERVER['QUERY_STRING'];
 			$date = date("Ymd");
 			$con = mysqli_connect("localhost","lee","1234","smr","3306");
-			$result = mysqli_query($con,"select * from v1 where Date = '$date' and Room_ID = '1' order by Time");
+			mysqli_set_charset($con,"utf8");
+			$result = mysqli_query($con,"select * from v1 where Date = '$date' and Room_ID = '$room' order by Time");
+			$re2 = mysqli_query($con,"select * from room where Room_ID='$room'");
+			$row2 = mysqli_fetch_array($re2);
+			$re3 = mysqli_query($con,"select * from place where place_ID='$row2[place_ID]'");
+			$row3 = mysqli_fetch_array($re3);
 			$number=1;
+			
 		?>
 		<table width = "790" class="displaytable" cellpadding="20">
-		<tr align="center"><td bgcolor="#1294AB"><font color="white" size="5px"><b>본관 Room 102A 금일 예약현황</font></td></tr>
+		<tr align="center"><td bgcolor="#1294AB"><font color="white" size="5px"><b> 금일 <?php echo $row3[Building]." ".$row2[RoomNum]." ";  ?>	예약현황</font></td></tr>
 		<table width = "790">
 		<tr align="center" height="30px">
 			<td bgcolor="#FF3636"><font color="white"><b>순번</font></td>
