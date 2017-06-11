@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<?php 
-			$_SESSION['nnn']=6;
+			$_SESSION['nnn']=$_SERVER['QUERY_STRING'];
 			header("Location: mAdd.php");
 		?>
 	</body>
