@@ -1,7 +1,0 @@
-http://211.183.34.141
-
-\\211.183.34.141
-
-mySQL 접근 방법 : http://211.183.34.141/myadmin/
-		  ID : root
-		  PW : apmsetup
